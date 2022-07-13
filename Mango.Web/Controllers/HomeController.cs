@@ -32,5 +32,12 @@ namespace Mango.Web.Controllers
         {
             return View();
         }
+
+        public async Task<IActionResult> SearchRestorant(string SearchString)
+        {
+            return View();
+        }
+
+
     }
 }
