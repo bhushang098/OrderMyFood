@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Mango.Web.Models.RestorantDto>
+
+@{
+    ViewData["Title"] = "Restorants";
+}
+
+<form id="form"> 
+  <input type="search" id="query" name="q" placeholder="Search...">
+   <a asp-action="SearchPage" class="btn btn-success form-control">Search For Restorants</a>
+  <button type="submit">Search</button>
+</form>
+
+<form>
+    <div class="container row">
+        @foreach (var restorant in Model)
+        {
+            <div class="col-4 ">
+                <div class="p-0 my-3 border">
+                    <div class="card">
+                        <img src="@restorant.ImageUrl" class="card-img-top">
+                        <div class="card-body">
+                            <h3 class="card-title text-success">@restorant.Name</h3>
+                            <span class="badge badge-light mb-2 ">@restorant.Distance</span>
+                            <p class="card-text">@Html.Raw(restorant.Location)</p>
+                            <div class="row">
+                                <div class="col pt-1">
+                                    <span style="font-size:23px;">@restorant.Cuisine </span>
+                                </div>
+                                <div class="col">
+                                    <a asp-action="Details" asp-route-productId="@restorant.RestorantId"
+                                   class="btn btn-success form-control">Details</a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</form>
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    }
